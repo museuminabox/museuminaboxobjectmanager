@@ -1,0 +1,41 @@
+<h1 class="form-title heading-xlarge">
+  <span class="heading-secondary">Organisation</span>
+  Add new organisation
+</h1>
+
+{% if form.errors %}
+<div class="error-summary" role="group" tabindex="-1">
+
+    <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
+      Error adding organisation
+    </h1>
+
+    <p>
+      Sorry there were problems when adding the organisation, please see below for details.
+    </p>
+
+    <ul class="error-summary-list">
+      {% for key,value in form.errors.items %}
+      {% for error in value %}
+      <li>{{ value.as_text|cut:"* " }}</li>
+      {% endfor %}
+      {% endfor %}
+    </ul>
+
+</div>
+{% endif %}
+
+<form id="organisation_form" method="post" action="">
+  {% csrf_token %}
+  <div class="form-group">
+    <label class="form-label-bold" for="id_slug">
+      Create new organisation.
+    </label>
+    <input class="form-control" id="id_name" maxlength="256" name="name" type="text" tabindex="1" autofocus="true">
+  </div>
+  <input type="submit" method="POST" value="Add organisation" class="button">
+</form>
+
+<hr />
+
+<a href="{% url 'organisation-list' %}">Back to organisations</a>

@@ -1,5 +1,9 @@
 from apps.home.views import Home
-from apps.organisations.views import OrganisationList
+from apps.organisations.views import (
+    OrganisationList,
+    OrganisationCreate,
+    OrganisationDetail,
+)
 
 from django.conf.urls import include, url
 
@@ -16,5 +20,14 @@ urlpatterns = [
         OrganisationList.as_view(),
         name='organisation-list',
     ),
-
+    url(
+        r'^organisations/new/?$',
+        OrganisationCreate.as_view(),
+        name='organisation-create',
+    ),
+    url(
+        r'^organisations/(?P<pk>\d+)/?$',
+        OrganisationDetail.as_view(),
+        name='organisation-detail',
+    ),
 ]
